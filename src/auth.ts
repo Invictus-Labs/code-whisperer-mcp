@@ -23,6 +23,7 @@ export class AuthError extends Error {
 // ─── In-memory validation cache ──────────────────────────────────────────────
 
 const CACHE_TTL_MS = 5 * 60 * 1000 // 5 minutes
+const MAX_CACHE_SIZE = 1_000       // prevent unbounded growth in long-running processes
 
 interface CacheEntry {
   valid: boolean
@@ -42,6 +43,11 @@ function getCached(key: string): boolean | null {
 }
 
 function setCached(key: string, valid: boolean): void {
+  if (validationCache.size >= MAX_CACHE_SIZE) {
+    // Evict oldest entry (Map preserves insertion order)
+    const oldest = validationCache.keys().next().value
+    if (oldest) validationCache.delete(oldest)
+  }
   validationCache.set(key, { valid, expiresAt: Date.now() + CACHE_TTL_MS })
 }
 
