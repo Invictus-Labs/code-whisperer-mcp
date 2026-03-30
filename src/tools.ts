@@ -91,9 +91,9 @@ function err(message: string): ToolResult {
   return { content: [{ type: 'text', text: message }], isError: true }
 }
 
-export function handleListSkills(args: Record<string, unknown>): ToolResult {
+export async function handleListSkills(args: Record<string, unknown>): Promise<ToolResult> {
   try {
-    validateApiKey(extractApiKey(args))
+    await validateApiKey(extractApiKey(args))
   } catch (e) {
     return err((e as Error).message)
   }
@@ -104,9 +104,9 @@ export function handleListSkills(args: Record<string, unknown>): ToolResult {
   return ok(`# Code Whisperer — ${SKILLS.length} Claude Code Skills\n\n${lines.join('\n\n')}`)
 }
 
-export function handleGetSkill(args: Record<string, unknown>): ToolResult {
+export async function handleGetSkill(args: Record<string, unknown>): Promise<ToolResult> {
   try {
-    validateApiKey(extractApiKey(args))
+    await validateApiKey(extractApiKey(args))
   } catch (e) {
     return err((e as Error).message)
   }
@@ -123,9 +123,9 @@ export function handleGetSkill(args: Record<string, unknown>): ToolResult {
   return ok(skill.content)
 }
 
-export function handleListTemplates(args: Record<string, unknown>): ToolResult {
+export async function handleListTemplates(args: Record<string, unknown>): Promise<ToolResult> {
   try {
-    validateApiKey(extractApiKey(args))
+    await validateApiKey(extractApiKey(args))
   } catch (e) {
     return err((e as Error).message)
   }
@@ -136,9 +136,9 @@ export function handleListTemplates(args: Record<string, unknown>): ToolResult {
   return ok(`# Code Whisperer — ${TEMPLATES.length} CLAUDE.md Templates\n\n${lines.join('\n\n')}`)
 }
 
-export function handleGetTemplate(args: Record<string, unknown>): ToolResult {
+export async function handleGetTemplate(args: Record<string, unknown>): Promise<ToolResult> {
   try {
-    validateApiKey(extractApiKey(args))
+    await validateApiKey(extractApiKey(args))
   } catch (e) {
     return err((e as Error).message)
   }
@@ -155,9 +155,9 @@ export function handleGetTemplate(args: Record<string, unknown>): ToolResult {
   return ok(template.content)
 }
 
-export function handleListPrompts(args: Record<string, unknown>): ToolResult {
+export async function handleListPrompts(args: Record<string, unknown>): Promise<ToolResult> {
   try {
-    validateApiKey(extractApiKey(args))
+    await validateApiKey(extractApiKey(args))
   } catch (e) {
     return err((e as Error).message)
   }
@@ -168,9 +168,9 @@ export function handleListPrompts(args: Record<string, unknown>): ToolResult {
   return ok(`# Code Whisperer — ${PROMPTS.length} Prompt Patterns\n\n${lines.join('\n\n')}`)
 }
 
-export function handleGetPrompt(args: Record<string, unknown>): ToolResult {
+export async function handleGetPrompt(args: Record<string, unknown>): Promise<ToolResult> {
   try {
-    validateApiKey(extractApiKey(args))
+    await validateApiKey(extractApiKey(args))
   } catch (e) {
     return err((e as Error).message)
   }
