@@ -5,7 +5,7 @@ MCP server package for The Code Whisperer skills library. Exposes 18 Claude Code
 5 CLAUDE.md templates, and 10+ prompt patterns via MCP stdio transport.
 
 ## Live Package
-`@code-whisperer/skills` on npm (pending publish)
+`@code-whisperer/skills` on npm — current published version: **1.1.0**
 
 ## Stack
 - **Runtime:** Node.js 18+, ESM
@@ -47,3 +47,6 @@ npm publish           # publish to npm (runs build + test first)
 npm version patch  # or minor/major
 npm publish --access public
 ```
+
+## Last Refreshed
+2026-05-08 — CLAUDE.md audited, no structural changes since v1.1.0 (2026-03-29).
